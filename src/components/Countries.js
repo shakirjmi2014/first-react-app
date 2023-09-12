@@ -17,13 +17,9 @@ const CountryList = () => {
         <tr>
           <th>Common Name</th>
           <th>Official Name</th>
-          <th>Native Official Name</th>
-          <th>Native Common Name</th>
           <th>Capital</th>
           <th>Region</th>
           <th>Sub-Region</th>
-          <th>Currency Name</th>
-          <th>Currency Symbol</th>
         </tr>
       </thead>
       <tbody>
@@ -35,13 +31,9 @@ const CountryList = () => {
               <tr>
                 <td>{country.name.common}</td>
                 <td>{country.name.official}</td>
-                {/* <td>{country.name.nativeName.nep.official}</td>
-                <td>{country.name.nativeName.nep.common}</td>
                 <td>{country.capital}</td>
                 <td>{country.region}</td>
                 <td>{country.subregion}</td>
-                <td>{country.currencies.Obj.name}</td>
-                <td>{country.currencies.NPR.symbol}</td> */}
               </tr>
             ))
           )}
