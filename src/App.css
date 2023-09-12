@@ -48,3 +48,24 @@
   text-align: center;
   padding: 20px;
 }
+
+table {
+  width: auto;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+table tbody tr td {
+  border-right-width: 1px;
+  border-top-width: 1px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-style: solid;
+  border-color: black;
+}
+
+table tbody tr td:last-child {
+  border-right: 0px;
+}
