@@ -5,18 +5,25 @@ phases:
       docker: 18
   pre_build:
     commands:
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region eu-north-1 --no-include-email)
       - REPOSITORY_URI=969553664980.dkr.ecr.eu-north-1.amazonaws.com/first-react-app
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - docker build -t $REPOSITORY_URI:latest -f Dockerfile .
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - printf '[{"name":"my-app-default-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - echo Writing image definitions file...
+      - printf '[{"name":"Shakir-Web-Apps","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
