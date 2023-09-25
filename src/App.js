@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import UserList from "./components/Users";
 import Countries from "./components/Countries";
